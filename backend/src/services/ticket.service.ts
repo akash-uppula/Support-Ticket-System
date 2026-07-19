@@ -1,5 +1,4 @@
 import TicketModel from "../models/Ticket.js";
-import { ITicket } from "../models/Ticket.js";
 import AppError from "../utils/AppError.js";
 
 interface CreateTicketInput {
