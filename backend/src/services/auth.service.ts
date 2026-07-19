@@ -77,3 +77,15 @@ export const loginUser = async (data: LoginInput) => {
     token,
   };
 };
+
+// ---------------------------------------Get Current User----------------------------------------
+
+export const getCurrentUser = async (userId: string) => {
+  const user = await UserModel.findById(userId);
+
+  if (!user) {
+    throw new AppError("User not found", 404);
+  }
+
+  return sanitizeUser(user);
+};

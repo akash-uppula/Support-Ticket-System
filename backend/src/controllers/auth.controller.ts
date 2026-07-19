@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import { registerUser, loginUser } from "../services/auth.service.js";
+import { getCurrentUser } from "../services/auth.service.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import apiResponse from "../utils/apiResponse.js";
 import { HTTP_STATUS } from "../constants/httpStatus.js";
@@ -28,3 +29,15 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     .status(HTTP_STATUS.OK)
     .json(apiResponse(true, "Login successful", result));
 });
+
+// ---------------------------------------Get Current User----------------------------------------
+
+export const getCurrentUserController = asyncHandler(
+  async (req: Request, res: Response) => {
+    const user = await getCurrentUser(req.user!.id);
+
+    res
+      .status(HTTP_STATUS.OK)
+      .json(apiResponse(true, "Current user fetched successfully", user));
+  },
+);

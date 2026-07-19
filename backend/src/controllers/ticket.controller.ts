@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import {
   createTicket,
   getMyTickets,
+  getTicketById,
   updateTicket,
   deleteTicket,
 } from "../services/ticket.service.js";
@@ -38,6 +39,16 @@ export const getMyTicketsController = asyncHandler(
     res
       .status(HTTP_STATUS.OK)
       .json(apiResponse(true, "Tickets fetched successfully", tickets));
+  },
+);
+
+// ----------------------------Get Ticket By Id Controller----------------------------
+
+export const getTicketController = asyncHandler(
+  async (req: Request, res: Response) => {
+    const ticket = await getTicketById(req.params.id as string, req.user!.id);
+
+    res.json(apiResponse(true, "Ticket fetched successfully", ticket));
   },
 );
 

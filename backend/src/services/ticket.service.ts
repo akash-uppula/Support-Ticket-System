@@ -44,6 +44,21 @@ export const getMyTickets = async (userId: string) => {
   return tickets;
 };
 
+// ----------------------------Get Ticket By Id----------------------------
+
+export const getTicketById = async (ticketId: string, userId: string) => {
+  const ticket = await TicketModel.findOne({
+    _id: ticketId,
+    createdBy: userId,
+  });
+
+  if (!ticket) {
+    throw new AppError("Ticket not found", 404);
+  }
+
+  return ticket;
+};
+
 // ----------------------------Update Ticket----------------------------
 
 export const updateTicket = async (

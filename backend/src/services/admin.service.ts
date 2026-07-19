@@ -42,7 +42,12 @@ export const updateTicketByAdmin = async (
 
   await ticket.save();
 
-  return ticket;
+  const updatedTicket = await TicketModel.findById(ticket._id).populate(
+    "createdBy",
+    "name email",
+  );
+
+  return updatedTicket;
 };
 
 // -------------------------------- Dashboard Statistics --------------------------------
