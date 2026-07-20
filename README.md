@@ -210,6 +210,10 @@ Create an admin account by either:
 OR
 
 - using the provided seed script (if included).
+  
+  ```
+  npm run seed:admin
+  ```
 
 ---
 
